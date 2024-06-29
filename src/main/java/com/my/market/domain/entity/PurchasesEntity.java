@@ -32,7 +32,7 @@ public class PurchasesEntity {
     @OneToMany(mappedBy = "purchasesByIdPurchase")
     private List<PurchaseProductsEntity> purchaseProductsByIdPurchase;
     @ManyToOne
-    @JoinColumn(name = "id_client", referencedColumnName = "id_client", nullable = false)
+    @JoinColumn(name = "id_client", referencedColumnName = "id_client", nullable = false, insertable = false,updatable = false)
     private ClientsEntity clientsByIdClient;
 
     public int getIdPurchase() {
