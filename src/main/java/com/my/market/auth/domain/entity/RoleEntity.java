@@ -3,20 +3,22 @@ package com.my.market.auth.domain.entity;
 import jakarta.persistence.*;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "roles", schema = "my_market", catalog = "")
-public class RolesEntity {
+@Table(name = "roles", schema = "my_market")
+public class RoleEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id_rol")
     private int idRol;
     @Basic
+    @Enumerated(EnumType.STRING)
     @Column(name = "name")
     private RoleName name;
     @OneToMany(mappedBy = "rolesByIdRol")
-    private Collection<UsersEntity> usersByIdRol;
+    private List<UserEntity> usersByIdRol;
 
     public int getIdRol() {
         return idRol;
@@ -39,12 +41,10 @@ public class RolesEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        RolesEntity that = (RolesEntity) o;
+        RoleEntity that = (RoleEntity) o;
 
         if (idRol != that.idRol) return false;
-        if (!Objects.equals(name, that.name)) return false;
-
-        return true;
+        return Objects.equals(name, that.name);
     }
 
     @Override
@@ -54,11 +54,11 @@ public class RolesEntity {
         return result;
     }
 
-    public Collection<UsersEntity> getUsersByIdRol() {
+    public List<UserEntity> getUsersByIdRol() {
         return usersByIdRol;
     }
 
-    public void setUsersByIdRol(Collection<UsersEntity> usersByIdRol) {
+    public void setUsersByIdRol(List<UserEntity> usersByIdRol) {
         this.usersByIdRol = usersByIdRol;
     }
 }

@@ -6,7 +6,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "users", schema = "my_market", catalog = "")
-public class UsersEntity {
+public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id_user")
@@ -25,7 +25,7 @@ public class UsersEntity {
     private int idRol;
     @ManyToOne
     @JoinColumn(name = "id_rol", referencedColumnName = "id_rol", nullable = false, insertable = false, updatable = false)
-    private RolesEntity rolesByIdRol;
+    private RoleEntity rolesByIdRol;
 
     public int getIdUser() {
         return idUser;
@@ -72,7 +72,7 @@ public class UsersEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        UsersEntity that = (UsersEntity) o;
+        UserEntity that = (UserEntity) o;
 
         if (idUser != that.idUser) return false;
         if (enabled != that.enabled) return false;
@@ -88,11 +88,11 @@ public class UsersEntity {
         return Objects.hash(idUser, userName, password, enabled, idRol, rolesByIdRol);
     }
 
-    public RolesEntity getRolesByIdRol() {
+    public RoleEntity getRolesByIdRol() {
         return rolesByIdRol;
     }
 
-    public void setRolesByIdRol(RolesEntity rolesByIdRol) {
+    public void setRolesByIdRol(RoleEntity rolesByIdRol) {
         this.rolesByIdRol = rolesByIdRol;
     }
 }
